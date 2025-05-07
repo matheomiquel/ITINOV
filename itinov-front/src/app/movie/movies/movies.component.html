@@ -1,1 +1,40 @@
-<p>movies works!</p>
+<div>
+  <h1>FILTRES</h1>
+  <button (click)="changeSortingStrategy('grade')" mat-button>note</button>
+  <button (click)="changeSortingStrategy('releaseDate')" mat-button>date de sortie</button>
+</div>
+<h2> TABLEAU</h2>
+<mat-table [dataSource]="movieDataSource">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Nom</mat-header-cell>
+    <mat-cell *matCellDef="let movie">{{movie.name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="releaseDate">
+    <mat-header-cell *matHeaderCellDef>date de sortie</mat-header-cell>
+    <mat-cell *matCellDef="let movie">{{movie.releaseDate | date: 'dd/MM/yyyy' }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="grade">
+    <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
+    <mat-cell *matCellDef="let movie">{{movie.grade}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="watched">
+    <mat-header-cell *matHeaderCellDef>Vu</mat-header-cell>
+    <mat-cell *matCellDef="let movie">
+      <mat-radio-button [checked]="movie.watched" disabled></mat-radio-button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="favorite">
+    <mat-header-cell *matHeaderCellDef>Favorie</mat-header-cell>
+    <mat-cell *matCellDef="let movie">
+      <mat-radio-button [checked]="movie.favorite" disabled></mat-radio-button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+</mat-table>

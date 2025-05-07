@@ -1,10 +1,11 @@
 <form [formGroup]="userFormGroup">
   <mat-form-field>
-    <mat-label>username</mat-label>
-    <input formControlName="username" type="text" matInput>
-  </mat-form-field>
-  <mat-form-field>
     <mat-label>Email</mat-label>
     <input formControlName="email" type="email" matInput>
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>password</mat-label>
+    <input formControlName="password" type="text" matInput>
+  </mat-form-field>
+  <button (click)="login()" mat-button>Se connecter</button>
 </form>

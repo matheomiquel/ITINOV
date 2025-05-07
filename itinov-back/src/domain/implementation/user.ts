@@ -33,9 +33,10 @@ export class UserDomain implements IUserDomain {
   public async login(userDto: UserLoginDto): Promise<Token & {username:string}> {
     const userDao = await this.userRepoSitory.login(userDto);
 
-    if (userDao.password && await compare(userDao.password, userDto.password)) {
+    if (!(userDao.password && await compare(userDto.password, userDao.password))) {
       throw DomainError.wrongPassword();
     }
+
     const token = await UserDomain.createToken({ id: userDao.id, username: userDao.username });
 
     return { token, username: userDao.username };

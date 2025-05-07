@@ -27,6 +27,6 @@ export class UserController {
   async login(request: RequestType<UserLoginDto>): ResponseType<Token> {
     const user = await this.userDomain.login(request.body);
 
-    return { status: HTTP_CODE.CREATED, data: user };
+    return { status: HTTP_CODE.OK, data: user };
   }
 }
